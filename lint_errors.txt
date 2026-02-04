@@ -1,0 +1,43 @@
+﻿
+> fix-my-city@0.0.0 lint
+> eslint .
+
+
+C:\Users\AADITHYA R\FIX MY CITY\src\components\ui\GoogleMapPicker.tsx
+  35:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\AADITHYA R\FIX MY CITY\src\components\ui\GoogleMapPicker.tsx:35:13
+  33 |     useEffect(() => {
+  34 |         if (initialLat && initialLng) {
+> 35 |             setMarkerPos(prev => {
+     |             ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |                 // Return previous state if identical to avoid re-render loop
+  37 |                 if (prev.lat === initialLat && prev.lng === initialLng) return prev;
+  38 |                 return { lat: initialLat, lng: initialLng };  react-hooks/set-state-in-effect
+
+C:\Users\AADITHYA R\FIX MY CITY\src\components\ui\MapPicker.tsx
+  44:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\AADITHYA R\FIX MY CITY\src\components\ui\MapPicker.tsx:44:13
+  42 |     useEffect(() => {
+  43 |         if (initialLat && initialLng) {
+> 44 |             setPosition(prev => {
+     |             ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  45 |                 if (prev && prev.lat === initialLat && prev.lng === initialLng) return prev;
+  46 |                 return { lat: initialLat, lng: initialLng };
+  47 |             });  react-hooks/set-state-in-effect
+
+Γ£û 2 problems (2 errors, 0 warnings)
+
